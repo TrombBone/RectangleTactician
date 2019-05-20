@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainGameActivity"
+    android:weightSum="100">
+
+    <com.konstbone.finishitschoolproject_rectangletactician.TestSurfaceView
+        android:id="@+id/testSurfaceView_ClassElement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="80"/>
+
+    <TextView
+        android:id="@+id/exceptionTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="15"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <Button
+            android:id="@+id/rotationButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/rotationButton_text"
+            android:layout_weight="50"
+            android:onClick="onClick"
+            />
+
+        <Button
+            android:id="@+id/endPlayerProgressButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/endPlayerProgressButton_text"
+            android:layout_weight="50"
+            android:onClick="onClick"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

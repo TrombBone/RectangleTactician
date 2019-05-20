@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">FinishITSchoolProject_RectangleTactician</string>
+
+    <string name="prog_name">Rectangle Tactic!</string>
+
+    <string name="startButton_text">Начать игру</string>
+    <string name="regulationButton_text">Правила</string>
+    <string name="settingsButton_text">Настройки</string>
+
+    <string name="regulations_title">Правила</string>
+    <string name="regulations_text"><u><b>Правила не сложные</b>, но их стоит <b>запомнить</b>:</u> \n
+        \n
+            1. Игра расчитана на <b>2-их игроков на одном устройстве</b>. \n
+            2. Сначала 1-ому игроку генерируются 2 случайных числа от 1 до 6 (как бросить 2 игральных кубика). \n
+            3. Генерируется прямоугольник(или квадрат) со сторонами, полученными от кубиков. \n
+            4. Вам следует поместить прямоугольник на клеточную территорию по <b>следующим правилам</b>: \n
+                4.1 Первые прямоугольники ставятся в противоположные углы поля. \n
+                4.2 Следующий прямоугольник должен быть присоединён к вашей существующей территории. \n
+                4.3 На одну сторону уже имеющегося прямоугольника допускается <b>не более 1 нового прямоугольника</b>, сторона которого должна либо полностью находиться в стороне имеющегося прямоугольника, либо полностью обхватывает сторону имеющегося прямоугольника. \n
+                4.4 Если <b>невозможно разместить</b> прямоугольник со сгенерированными сторонами, ход пропускается. \n
+                . \n
+            5. После выставления прямоугольника <b>надо нажать кнопку завершения хода</b>, и ход перейдёт к следующему игроку. \n
+            6. 2-ой игрок повторяет пункты 1 - 5. \n
+            7. Выигрывает игрок с <b>большей</b> территорией.
+    </string>
+
+    <string name="generateRandomButton_text">Сгенерировать</string>
+
+    <string name="player1StartTV_text">Игрок 1, ваш ход</string>
+    <string name="player2StartTV_text">Игрок 2, ваш ход</string>
+
+    <string name="endPlayerProgressButton_text">Переход хода</string>
+    <string name="rotationButton_text">Повернуть</string>
+    <string name="exceptionTV_good_text">Всё в порядке!</string>
+    <string name="exceptionTV_bad_OutOfBoundsException_text">Не выходите за пределы сетки!</string>
+
+
+
+
+</resources>
