@@ -12,7 +12,7 @@ public class MainGameActivity extends AppCompatActivity {
 
     public static int rectSide1;
     public static int rectSide2;
-    public static TextView exceptionTV;
+    public TextView exceptionTV;
     public static boolean exceptionFlag = true;
 
     @Override
@@ -29,26 +29,21 @@ public class MainGameActivity extends AppCompatActivity {
         rectSide1 = Integer.parseInt(rectSide1String);
         rectSide2 = Integer.parseInt(rectSide2String);
 
-        //exceptionTV_good_text_func();
-        ExceptionRectangle exceptionRectangle = new ExceptionRectangle(exceptionTV);
-        exceptionRectangle.start();
-
+        exceptionTV_good_text_func();
     }
     /*
     Runnable exceptionTV_good_text_func = new Runnable() {
         @Override
-        public void run() {
-
-        }
+        public void run() { }
     };
     */
-    public static void exceptionTV_good_text_func() {
+    public void exceptionTV_good_text_func() {
         exceptionFlag = true;
         exceptionTV.setText(R.string.exceptionTV_good_text);
         exceptionTV.setBackgroundColor(Color.GREEN);
     }
 
-    public static void exceptionTV_bad_OutOfBoundsException_text_func() {
+    public void exceptionTV_bad_OutOfBoundsException_text_func() {
         exceptionFlag = false;
         exceptionTV.setText(R.string.exceptionTV_bad_OutOfBoundsException_text);
         exceptionTV.setBackgroundColor(Color.RED);
@@ -67,34 +62,5 @@ public class MainGameActivity extends AppCompatActivity {
         }
     }
 
-    class ExceptionRectangle extends Thread {
-        TextView exception;
-        public ExceptionRectangle(TextView textview) {
-            super();
-            exception = textview;
-        }
 
-        Runnable exceptionTV_good_text_func = new Runnable() {
-            @Override
-            public void run() {
-                exceptionFlag = true;
-                exception.setText(R.string.exceptionTV_good_text);
-                exception.setBackgroundColor(Color.GREEN);
-            }
-        };
-
-        Runnable exceptionTV_bad_OutOfBoundsException_text_func = new Runnable() {
-            @Override
-            public void run() {
-                exceptionFlag = false;
-                exceptionTV.setText(R.string.exceptionTV_bad_OutOfBoundsException_text);
-                exceptionTV.setBackgroundColor(Color.RED);
-            }
-        };
-
-        @Override
-        public void run() {
-            //runOnUiThread(settext);
-        }
-    }
 }

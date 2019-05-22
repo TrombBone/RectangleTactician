@@ -1,6 +1,5 @@
 package com.konstbone.finishitschoolproject_rectangletactician;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,7 +10,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
 
-import static com.konstbone.finishitschoolproject_rectangletactician.MainGameActivity.exceptionTV_good_text_func;
+import static com.konstbone.finishitschoolproject_rectangletactician.MainGameActivity.exceptionFlag;
 import static com.konstbone.finishitschoolproject_rectangletactician.MainGameActivity.rectSide1;
 import static com.konstbone.finishitschoolproject_rectangletactician.MainGameActivity.rectSide2;
 
@@ -40,22 +39,12 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         SurfaceHolder surfaceHolder;
         Paint p = new Paint();
 
+        MainGameActivity mainGameActivity = new MainGameActivity();
+
         public DrawThread(SurfaceHolder surfaceHolder) {
             this.surfaceHolder = surfaceHolder;
         }
-        public DrawThread(MainGameActivity activity) {
-            
-        }
-        /*
-        Runnable exceptionTV_good_text_func = new Runnable() {
-            @Override
-            public void run() {
-                //exceptionFlag = true;
-                exception.setText(R.string.exceptionTV_good_text);
-                exception.setBackgroundColor(Color.GREEN);
-            }
-        };
-*/
+
         @Override
         public void run() {
             //((Activity)getContext()).runOnUiThread(exceptionTV_good_text_func);
@@ -95,7 +84,15 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                                 if ((x - partCanvasWidth*rectSide1 >= 0 && y - partCanvasWidth*rectSide2 >= 0)||(x == 0 && y == 0)) {
                                     canvas.drawRect(x - partCanvasWidth*(rectSide1 - 1), y - partCanvasWidth*(rectSide2 - 1), x + partCanvasWidth, y + partCanvasWidth, p);
                                     //писать в TextView о том, что всё хорошо и красить его в зелёный
+                                    //
+                                    ExceptionRectangle exceptionRectangle = new ExceptionRectangle(mainGameActivity);
+                                    exceptionFlag = true;
+                                    exceptionRectangle.start();
+                                    try {
+                                        exceptionRectangle.join();
+                                    } catch (InterruptedException e) { }
                                 } else {
+                                    exceptionFlag = false;
                                     //писать в TextView об ошибке и красить его в красный
                                 }
                                 //
@@ -120,4 +117,32 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) { }
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) { }
+
+    public class ExceptionRectangle extends Thread {
+        MainGameActivity mainGameActivity;
+        public ExceptionRectangle(MainGameActivity mainGameActivity) {
+            super();
+            this.mainGameActivity = mainGameActivity;
+        }
+
+        public void exceptionTV_good_text_func() {
+            exceptionFlag = true;
+            mainGameActivity.exceptionTV_good_text_func();
+        }
+
+        Runnable exceptionTV_bad_OutOfBoundsException_text_func = new Runnable() {
+            @Override
+            public void run() {
+                exceptionFlag = false;
+                mainGameActivity.exceptionTV_bad_OutOfBoundsException_text_func();
+            }
+        };
+
+        @Override
+        public void run() {
+            if (exceptionFlag) {
+                exceptionTV_good_text_func();
+            }
+        }
+    }
 }
