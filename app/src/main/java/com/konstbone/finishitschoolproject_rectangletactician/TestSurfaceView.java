@@ -10,12 +10,12 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
 
-import static com.konstbone.finishitschoolproject_rectangletactician.MainGameActivity.exceptionFlag;
-import static com.konstbone.finishitschoolproject_rectangletactician.MainGameActivity.rectSide1;
-import static com.konstbone.finishitschoolproject_rectangletactician.MainGameActivity.rectSide2;
-
 
 public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callback{
+
+    public MainGameActivity mainGameActivity;
+    TextView exceptionTV;
+
     public TestSurfaceView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         getHolder().addCallback(this);
@@ -26,9 +26,12 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
         touchX = event.getX();
         touchY = event.getY();
         v = true;
+        exceptionTV = mainGameActivity.exceptionTV;
+        //всю проверку лучше сделать здесь!
         return true;
     }
 
@@ -38,8 +41,6 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         boolean runFlag = true;
         SurfaceHolder surfaceHolder;
         Paint p = new Paint();
-
-        MainGameActivity mainGameActivity = new MainGameActivity();
 
         public DrawThread(SurfaceHolder surfaceHolder) {
             this.surfaceHolder = surfaceHolder;
@@ -81,20 +82,23 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                             if (touchY >= y && touchY <= y + partCanvasWidth) {
                                 p.setColor(Color.BLUE);
                                 p.setStyle(Paint.Style.FILL);
-                                if ((x - partCanvasWidth*rectSide1 >= 0 && y - partCanvasWidth*rectSide2 >= 0)||(x == 0 && y == 0)) {
+                                /*
+                                ExceptionRectangle exceptionRectangle = new ExceptionRectangle(mainGameActivity, partCanvasWidth);
+                                if ((x - partCanvasWidth*(rectSide1-1) >= 0 && y - partCanvasWidth*(rectSide2-1) >= 0)) {
                                     canvas.drawRect(x - partCanvasWidth*(rectSide1 - 1), y - partCanvasWidth*(rectSide2 - 1), x + partCanvasWidth, y + partCanvasWidth, p);
                                     //писать в TextView о том, что всё хорошо и красить его в зелёный
-                                    //
-                                    ExceptionRectangle exceptionRectangle = new ExceptionRectangle(mainGameActivity);
+
                                     exceptionFlag = true;
-                                    exceptionRectangle.start();
-                                    try {
-                                        exceptionRectangle.join();
-                                    } catch (InterruptedException e) { }
+
                                 } else {
                                     exceptionFlag = false;
-                                    //писать в TextView об ошибке и красить его в красный
                                 }
+                                exceptionRectangle.start();
+                                try {
+                                    exceptionRectangle.join();
+                                } catch (InterruptedException e) { }
+                                */
+                                //писать в TextView об ошибке и красить его в красный
                                 //
                                 //
                                 p.setColor(Color.BLACK);
@@ -118,17 +122,23 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) { }
 
+    /*
     public class ExceptionRectangle extends Thread {
+        int partCanvasWidth;
         MainGameActivity mainGameActivity;
-        public ExceptionRectangle(MainGameActivity mainGameActivity) {
+        public ExceptionRectangle(MainGameActivity mainGameActivity, int partCanvasWidth) {
             super();
             this.mainGameActivity = mainGameActivity;
+            this.partCanvasWidth = partCanvasWidth;
         }
 
-        public void exceptionTV_good_text_func() {
-            exceptionFlag = true;
-            mainGameActivity.exceptionTV_good_text_func();
-        }
+        Runnable exceptionTV_good_text_func = new Runnable() {
+            @Override
+            public void run() {
+                exceptionFlag = true;
+                mainGameActivity.exceptionTV_good_text_func();
+            }
+        };
 
         Runnable exceptionTV_bad_OutOfBoundsException_text_func = new Runnable() {
             @Override
@@ -141,8 +151,11 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         @Override
         public void run() {
             if (exceptionFlag) {
-                exceptionTV_good_text_func();
+                mainGameActivity.runOnUiThread(exceptionTV_good_text_func);
+            } else { // else if (выход за границы)
+                mainGameActivity.runOnUiThread(exceptionTV_bad_OutOfBoundsException_text_func);
             }
         }
     }
+    */
 }

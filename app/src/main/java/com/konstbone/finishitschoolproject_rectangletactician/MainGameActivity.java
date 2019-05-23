@@ -1,5 +1,6 @@
 package com.konstbone.finishitschoolproject_rectangletactician;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,14 +15,17 @@ public class MainGameActivity extends AppCompatActivity {
     public static int rectSide2;
     public TextView exceptionTV;
     public static boolean exceptionFlag = true;
+    TestSurfaceView surfaceView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game);
         Objects.requireNonNull(getSupportActionBar()).hide();
-
+        surfaceView = (TestSurfaceView) findViewById(R.id.testSurfaceView_ClassElement);
+        surfaceView.mainGameActivity = this;
         exceptionTV = findViewById(R.id.exceptionTV);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //
 
         String rectSide1String = getIntent().getStringExtra("side1");
