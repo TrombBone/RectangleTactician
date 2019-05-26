@@ -40,7 +40,6 @@
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="@string/generateRandomButton_text"
-        android:background="@android:color/background_light"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="30sp"
         android:textStyle="italic"
