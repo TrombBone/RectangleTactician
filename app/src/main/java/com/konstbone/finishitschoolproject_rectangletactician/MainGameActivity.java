@@ -19,12 +19,14 @@ public class MainGameActivity extends AppCompatActivity {
     public static int rectSide2;
 
     public static int NumOfSquareInWidth = 20;
-    public static int NamOfSquareInHeight = 28;
+    public static int NumOfSquareInHeight = 28;
 
-    public static ArrayList<ArrayList<ArrayList<Integer>>> rectCoord = new ArrayList<>();
+    public static ArrayList<ArrayList<ArrayList<Integer>>> playerOneRectCoord = new ArrayList<>();
 
     public static TextView exceptionTV;
     public static boolean exceptionFlag = true;
+
+    public static String playerFlag;
 
     TestSurfaceView surfaceView;
 
@@ -40,7 +42,7 @@ public class MainGameActivity extends AppCompatActivity {
         //
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        surfaceView.getLayoutParams().height = NamOfSquareInHeight *surfaceView.getLayoutParams().width/20;
+        surfaceView.getLayoutParams().height = NumOfSquareInHeight *surfaceView.getLayoutParams().width/20;
 
         exceptionTV.setTextSize(exceptionTV.getLayoutParams().height);
 
@@ -79,9 +81,15 @@ public class MainGameActivity extends AppCompatActivity {
                 break;
             case R.id.endPlayerProgressButton:
                 if (exceptionFlag) {
-                    rectCoord.add(oneRectCoord);
-                    Intent FromMainGameToPlayer2StartIntent = new Intent();
-                    startActivity(FromMainGameToPlayer2StartIntent);
+                    if (playerFlag.equals("Player_1")) {
+                        playerOneRectCoord.add(oneRectCoord);
+                        Intent FromMainGameToPlayer2StartIntent = new Intent(MainGameActivity.this, Player2StartActivity.class);
+                        startActivity(FromMainGameToPlayer2StartIntent);
+                    } else if (playerFlag.equals("Player_2")) {
+                        // запоминать координаты прямоугольников 2 игрока
+                        Intent FromMainGameToPlayer1StartIntent = new Intent(MainGameActivity.this, Player1StartActivity.class);
+                        startActivity(FromMainGameToPlayer1StartIntent);
+                    }
                 }
                 //
                 break;

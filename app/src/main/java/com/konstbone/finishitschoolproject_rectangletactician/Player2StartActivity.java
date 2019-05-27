@@ -9,23 +9,21 @@ import java.util.Objects;
 
 import static com.konstbone.finishitschoolproject_rectangletactician.MainGameActivity.playerFlag;
 
-public class Player1StartActivity extends AppCompatActivity {
+public class Player2StartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player1_start);
+        setContentView(R.layout.activity_player2_start);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        playerFlag = "Player_1";
+        playerFlag = "Player_2";
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Intent FromPlayer1StartToRandomSidesIntent = new Intent(Player1StartActivity.this, RandomSidesActivity.class);
-        startActivity(FromPlayer1StartToRandomSidesIntent);
+        Intent FromPlayer2StartToRandomSidesIntent = new Intent(Player2StartActivity.this, RandomSidesActivity.class);
+        startActivity(FromPlayer2StartToRandomSidesIntent);
         return true;
     }
-
-
 }
