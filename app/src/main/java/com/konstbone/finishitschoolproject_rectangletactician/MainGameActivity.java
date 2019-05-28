@@ -11,7 +11,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static com.konstbone.finishitschoolproject_rectangletactician.TestSurfaceView.draw;
 import static com.konstbone.finishitschoolproject_rectangletactician.TestSurfaceView.oneRectCoord;
+import static com.konstbone.finishitschoolproject_rectangletactician.TestSurfaceView.playerOneChecker;
+import static com.konstbone.finishitschoolproject_rectangletactician.TestSurfaceView.playerTwoChecker;
 
 public class MainGameActivity extends AppCompatActivity {
 
@@ -22,9 +25,10 @@ public class MainGameActivity extends AppCompatActivity {
     public static int NumOfSquareInHeight = 28;
 
     public static ArrayList<ArrayList<ArrayList<Integer>>> playerOneRectCoord = new ArrayList<>();
+    public static ArrayList<ArrayList<ArrayList<Integer>>> playerTwoRectCoord = new ArrayList<>();
 
     public static TextView exceptionTV;
-    public static boolean exceptionFlag = true;
+    public static boolean exceptionFlag = false;
 
     public static String playerFlag;
 
@@ -51,25 +55,31 @@ public class MainGameActivity extends AppCompatActivity {
         rectSide1 = Integer.parseInt(rectSide1String);
         rectSide2 = Integer.parseInt(rectSide2String);
 
-        exceptionTV_good_text_func();
+        exceptionTV_bad_NoRectangle_text_func();
     }
 
     public static void exceptionTV_good_text_func() {
         exceptionFlag = true;
-        exceptionTV.setText(R.string.exceptionTV_good_text);
         exceptionTV.setBackgroundColor(Color.GREEN);
+        exceptionTV.setText(R.string.exceptionTV_good_text);
+    }
+
+    public static void exceptionTV_bad_NoRectangle_text_func() {
+        exceptionFlag = false;
+        exceptionTV.setBackgroundColor(Color.RED);
+        exceptionTV.setText(R.string.exceptionTV_bad_NoRectangle_text);
     }
 
     public static void exceptionTV_bad_OutOfBoundsException_text_func() {
         exceptionFlag = false;
-        exceptionTV.setText(R.string.exceptionTV_bad_OutOfBoundsException_text);
         exceptionTV.setBackgroundColor(Color.RED);
+        exceptionTV.setText(R.string.exceptionTV_bad_OutOfBoundsException_text);
     }
 
     public static void exceptionTV_bad_LocationException_text_func() {
         exceptionFlag = false;
-        exceptionTV.setText(R.string.exceptionTV_bad_LocationException_text);
         exceptionTV.setBackgroundColor(Color.RED);
+        exceptionTV.setText(R.string.exceptionTV_bad_LocationException_text);
     }
 
     public void onClick(View view) {
@@ -78,21 +88,36 @@ public class MainGameActivity extends AppCompatActivity {
                 int help = rectSide1;
                 rectSide1 = rectSide2;
                 rectSide2 = help;
+                if (playerFlag.equals("Player_1")) {
+                    playerOneChecker();
+                } else if (playerFlag.equals("Player_2")){
+                    playerTwoChecker();
+                }
                 break;
             case R.id.endPlayerProgressButton:
                 if (exceptionFlag) {
                     if (playerFlag.equals("Player_1")) {
-                        playerOneRectCoord.add(oneRectCoord);
+                        playerOneRectCoord.add(oneRectCoord);// запоминание координат прямоугольников 1 игрока
                         Intent FromMainGameToPlayer2StartIntent = new Intent(MainGameActivity.this, Player2StartActivity.class);
                         startActivity(FromMainGameToPlayer2StartIntent);
+                        finish();
                     } else if (playerFlag.equals("Player_2")) {
-                        // запоминать координаты прямоугольников 2 игрока
+                        playerTwoRectCoord.add(oneRectCoord);// запоминание координат прямоугольников 2 игрока
                         Intent FromMainGameToPlayer1StartIntent = new Intent(MainGameActivity.this, Player1StartActivity.class);
                         startActivity(FromMainGameToPlayer1StartIntent);
+                        finish();
                     }
+                    draw = false;
                 }
                 //
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //обработчик нажатия системной кнопки "назад"
+        //спросить пользователя, точно ли он хочет выйти и предупредить о несохранности всех данных игры
+        //лучше с помощью AlertDialog (всплывающее окно)
     }
 }

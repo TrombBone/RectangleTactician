@@ -24,6 +24,14 @@ public class Player2StartActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent event) {
         Intent FromPlayer2StartToRandomSidesIntent = new Intent(Player2StartActivity.this, RandomSidesActivity.class);
         startActivity(FromPlayer2StartToRandomSidesIntent);
+        finish();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        //обработчик нажатия системной кнопки "назад"
+        //спросить пользователя, точно ли он хочет выйти и предупредить о несохранности всех данных игры
+        //лучше с помощью AlertDialog (всплывающее окно)
     }
 }

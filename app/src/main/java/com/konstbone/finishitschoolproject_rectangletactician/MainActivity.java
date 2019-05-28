@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent StartIntent = new Intent(MainActivity.this, GreetingActivity.class);
         startActivity(StartIntent);
+        finish();
         //
     }
 

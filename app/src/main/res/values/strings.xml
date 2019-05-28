@@ -31,6 +31,8 @@
 
     <string name="endPlayerProgressButton_text">Переход хода</string>
     <string name="rotationButton_text">Повернуть</string>
+
+    <string name="exceptionTV_bad_NoRectangle_text">Поставьте прямоугольник!(коснитесь экрана)</string>
     <string name="exceptionTV_good_text">Всё в порядке!</string>
     <string name="exceptionTV_bad_OutOfBoundsException_text">Не выходите за пределы сетки!</string>
     <string name="exceptionTV_bad_LocationException_text">Неправильное расположение фигуры!</string>

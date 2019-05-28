@@ -52,8 +52,16 @@ public class RandomSidesActivity extends AppCompatActivity {
                 FromRandomSidesToMainGameIntent.putExtra("side1", String.valueOf(side1));
                 FromRandomSidesToMainGameIntent.putExtra("side2", String.valueOf(side2));
                 startActivity(FromRandomSidesToMainGameIntent);
+                finish();
             }
         };
-        timer.schedule(task, 1500);
+        timer.schedule(task, 1100);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //обработчик нажатия системной кнопки "назад"
+        //спросить пользователя, точно ли он хочет выйти и предупредить о несохранности всех данных игры
+        //лучше с помощью AlertDialog (всплывающее окно)
     }
 }

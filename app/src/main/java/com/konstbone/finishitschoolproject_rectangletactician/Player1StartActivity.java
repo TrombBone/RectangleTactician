@@ -24,8 +24,14 @@ public class Player1StartActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent event) {
         Intent FromPlayer1StartToRandomSidesIntent = new Intent(Player1StartActivity.this, RandomSidesActivity.class);
         startActivity(FromPlayer1StartToRandomSidesIntent);
+        finish();
         return true;
     }
 
-
+    @Override
+    public void onBackPressed() {
+        //обработчик нажатия системной кнопки "назад"
+        //спросить пользователя, точно ли он хочет выйти и предупредить о несохранности всех данных игры
+        //лучше с помощью AlertDialog (всплывающее окно)
+    }
 }
