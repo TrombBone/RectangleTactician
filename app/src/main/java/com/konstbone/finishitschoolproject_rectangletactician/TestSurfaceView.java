@@ -141,211 +141,459 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                             Log.d("my", "rightLengthEmpty: " + rightLengthEmpty + "; leftLengthEmpty: " + leftLengthEmpty);
                             Log.d("my", "upLengthEmpty: " + upLengthEmpty + "; downLengthEmpty: " + downLengthEmpty);
 
-                            checkAll: for (int numRect = 0; numRect < playerRectCoord.size(); numRect++) {
-                                for (int numPointFirstRect = 0; numPointFirstRect < 4; numPointFirstRect++) {
-                                    for (int numPointSecondRect = 0; numPointSecondRect < 4; numPointSecondRect++) {
-                                        boolean good = false;
-                                        //Log.d("my", "old_X: " + playerRectCoord.get(numRect).get(numPointFirstRect).get(0));
-                                        //Log.d("my", "new_X: " + oneRectCoord.get(numPointSecondRect).get(0));
-                                        Log.d("my", "numRect: " + numRect);
-                                        //проверка прямоугольников на наезды друг на друга: (не работает)
-
-                                        if (oneRectCoord.get(0).get(0) <= playerOneRectCoord.get(numRect).get(0).get(0)) {
-                                            if (oneRectCoord.get(0).get(1) <= playerOneRectCoord.get(numRect).get(0).get(1)) {
-                                                if (oneRectCoord.get(3).get(0) >= playerOneRectCoord.get(numRect).get(3).get(0)) {
-                                                    if (oneRectCoord.get(3).get(1) >= playerOneRectCoord.get(numRect).get(3).get(1)) {
-                                                        exceptionTV_bad_LocationException_text_func();
-                                                        Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
-                                                        pointFlag = false;
-                                                        break checkAll;
+                            checkAll: {
+                                for (int numRect = 0; numRect < playerRectCoord.size(); numRect++) {
+                                    for (int numPointFirstRect = 0; numPointFirstRect < 4; numPointFirstRect++) {
+                                        for (int numPointSecondRect = 0; numPointSecondRect < 4; numPointSecondRect++) {
+                                            //проверка прямоугольников на наезды друг на друга: (не работает)
+                                            if (oneRectCoord.get(0).get(0) <= playerOneRectCoord.get(numRect).get(0).get(0)) {
+                                                if (oneRectCoord.get(0).get(1) <= playerOneRectCoord.get(numRect).get(0).get(1)) {
+                                                    if (oneRectCoord.get(3).get(0) >= playerOneRectCoord.get(numRect).get(3).get(0)) {
+                                                        if (oneRectCoord.get(3).get(1) >= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                            exceptionTV_bad_LocationException_text_func();
+                                                            Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                            pointFlag = false;
+                                                            break checkAll;
+                                                        } else if (oneRectCoord.get(3).get(1) <= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                            if (oneRectCoord.get(3).get(1) > playerOneRectCoord.get(numRect).get(1).get(1)) {
+                                                                exceptionTV_bad_LocationException_text_func();
+                                                                Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                pointFlag = false;
+                                                                break checkAll;
+                                                            }
+                                                        }
+                                                    } else if (oneRectCoord.get(3).get(0) <= playerOneRectCoord.get(numRect).get(3).get(0)) {
+                                                        if (oneRectCoord.get(3).get(0) > playerOneRectCoord.get(numRect).get(2).get(0)) {
+                                                            if (oneRectCoord.get(3).get(1) >= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                exceptionTV_bad_LocationException_text_func();
+                                                                Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                pointFlag = false;
+                                                                break checkAll;
+                                                            } else if (oneRectCoord.get(3).get(1) <= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                if (oneRectCoord.get(3).get(1) > playerOneRectCoord.get(numRect).get(1).get(1)) {
+                                                                    exceptionTV_bad_LocationException_text_func();
+                                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                    pointFlag = false;
+                                                                    break checkAll;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                } else if (oneRectCoord.get(0).get(1) >= playerOneRectCoord.get(numRect).get(0).get(1)) {
+                                                    if (oneRectCoord.get(0).get(1) < playerOneRectCoord.get(numRect).get(2).get(1)) {
+                                                        if (oneRectCoord.get(3).get(0) >= playerOneRectCoord.get(numRect).get(3).get(0)) {
+                                                            if (oneRectCoord.get(3).get(1) >= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                exceptionTV_bad_LocationException_text_func();
+                                                                Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                pointFlag = false;
+                                                                break checkAll;
+                                                            } else if (oneRectCoord.get(3).get(1) <= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                if (oneRectCoord.get(3).get(1) > playerOneRectCoord.get(numRect).get(1).get(1)) {
+                                                                    exceptionTV_bad_LocationException_text_func();
+                                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                    pointFlag = false;
+                                                                    break checkAll;
+                                                                }
+                                                            }
+                                                        } else if (oneRectCoord.get(3).get(0) <= playerOneRectCoord.get(numRect).get(3).get(0)) {
+                                                            if (oneRectCoord.get(3).get(0) > playerOneRectCoord.get(numRect).get(2).get(0)) {
+                                                                if (oneRectCoord.get(3).get(1) >= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                    exceptionTV_bad_LocationException_text_func();
+                                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                    pointFlag = false;
+                                                                    break checkAll;
+                                                                } else if (oneRectCoord.get(3).get(1) <= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                    if (oneRectCoord.get(3).get(1) > playerOneRectCoord.get(numRect).get(1).get(1)) {
+                                                                        exceptionTV_bad_LocationException_text_func();
+                                                                        Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                        pointFlag = false;
+                                                                        break checkAll;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 }
-                                            } else if (oneRectCoord.get(0).get(1) >= playerOneRectCoord.get(numRect).get(0).get(1)) {
-                                                if (oneRectCoord.get(3).get(0) > playerOneRectCoord.get(numRect).get(0).get(0)) {
-                                                    exceptionTV_bad_LocationException_text_func();
-                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
-                                                    pointFlag = false;
-                                                    break checkAll;
+                                            } else if (oneRectCoord.get(0).get(0) >= playerOneRectCoord.get(numRect).get(0).get(0)) {
+                                                if (oneRectCoord.get(0).get(0) < playerOneRectCoord.get(numRect).get(1).get(0)) {
+                                                    if (oneRectCoord.get(0).get(1) <= playerOneRectCoord.get(numRect).get(0).get(1)) {
+                                                        if (oneRectCoord.get(3).get(0) >= playerOneRectCoord.get(numRect).get(3).get(0)) {
+                                                            if (oneRectCoord.get(3).get(1) >= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                exceptionTV_bad_LocationException_text_func();
+                                                                Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                pointFlag = false;
+                                                                break checkAll;
+                                                            } else if (oneRectCoord.get(3).get(1) <= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                if (oneRectCoord.get(3).get(1) > playerOneRectCoord.get(numRect).get(1).get(1)) {
+                                                                    exceptionTV_bad_LocationException_text_func();
+                                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                    pointFlag = false;
+                                                                    break checkAll;
+                                                                }
+                                                            }
+                                                        } else if (oneRectCoord.get(3).get(0) <= playerOneRectCoord.get(numRect).get(3).get(0)) {
+                                                            if (oneRectCoord.get(3).get(0) > playerOneRectCoord.get(numRect).get(2).get(0)) {
+                                                                if (oneRectCoord.get(3).get(1) >= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                    exceptionTV_bad_LocationException_text_func();
+                                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                    pointFlag = false;
+                                                                    break checkAll;
+                                                                } else if (oneRectCoord.get(3).get(1) <= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                    if (oneRectCoord.get(3).get(1) > playerOneRectCoord.get(numRect).get(1).get(1)) {
+                                                                        exceptionTV_bad_LocationException_text_func();
+                                                                        Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                        pointFlag = false;
+                                                                        break checkAll;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    } else if (oneRectCoord.get(0).get(1) >= playerOneRectCoord.get(numRect).get(0).get(1)) {
+                                                        if (oneRectCoord.get(0).get(1) < playerOneRectCoord.get(numRect).get(2).get(1)) {
+                                                            if (oneRectCoord.get(3).get(0) >= playerOneRectCoord.get(numRect).get(3).get(0)) {
+                                                                if (oneRectCoord.get(3).get(1) >= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                    exceptionTV_bad_LocationException_text_func();
+                                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                    pointFlag = false;
+                                                                    break checkAll;
+                                                                } else if (oneRectCoord.get(3).get(1) <= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                    if (oneRectCoord.get(3).get(1) > playerOneRectCoord.get(numRect).get(1).get(1)) {
+                                                                        exceptionTV_bad_LocationException_text_func();
+                                                                        Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                        pointFlag = false;
+                                                                        break checkAll;
+                                                                    }
+                                                                }
+                                                            } else if (oneRectCoord.get(3).get(0) <= playerOneRectCoord.get(numRect).get(3).get(0)) {
+                                                                if (oneRectCoord.get(3).get(0) > playerOneRectCoord.get(numRect).get(2).get(0)) {
+                                                                    if (oneRectCoord.get(3).get(1) >= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                        exceptionTV_bad_LocationException_text_func();
+                                                                        Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                        pointFlag = false;
+                                                                        break checkAll;
+                                                                    } else if (oneRectCoord.get(3).get(1) <= playerOneRectCoord.get(numRect).get(3).get(1)) {
+                                                                        if (oneRectCoord.get(3).get(1) > playerOneRectCoord.get(numRect).get(1).get(1)) {
+                                                                            exceptionTV_bad_LocationException_text_func();
+                                                                            Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                            pointFlag = false;
+                                                                            break checkAll;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
-                                        } else if (oneRectCoord.get(0).get(0) >= playerOneRectCoord.get(numRect).get(0).get(0)) {
-                                            if (oneRectCoord.get(0).get(1) >= playerOneRectCoord.get(numRect).get(0).get(1)) {
-                                                if (oneRectCoord.get(3).get(0) <= playerOneRectCoord.get(numRect).get(3).get(0)) {
-                                                    if (oneRectCoord.get(3).get(1) <= playerOneRectCoord.get(numRect).get(3).get(1)) {
-                                                        exceptionTV_bad_LocationException_text_func();
-                                                        Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
-                                                        pointFlag = false;
-                                                        break checkAll;
+                                            if (oneRectCoord.get(0).get(0) <= playerTwoRectCoord.get(numRect).get(0).get(0)) {
+                                                if (oneRectCoord.get(0).get(1) <= playerTwoRectCoord.get(numRect).get(0).get(1)) {
+                                                    if (oneRectCoord.get(3).get(0) >= playerTwoRectCoord.get(numRect).get(3).get(0)) {
+                                                        if (oneRectCoord.get(3).get(1) >= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                            exceptionTV_bad_LocationException_text_func();
+                                                            Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                            pointFlag = false;
+                                                            break checkAll;
+                                                        } else if (oneRectCoord.get(3).get(1) <= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                            if (oneRectCoord.get(3).get(1) > playerTwoRectCoord.get(numRect).get(1).get(1)) {
+                                                                exceptionTV_bad_LocationException_text_func();
+                                                                Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                pointFlag = false;
+                                                                break checkAll;
+                                                            }
+                                                        }
+                                                    } else if (oneRectCoord.get(3).get(0) <= playerTwoRectCoord.get(numRect).get(3).get(0)) {
+                                                        if (oneRectCoord.get(3).get(0) > playerTwoRectCoord.get(numRect).get(2).get(0)) {
+                                                            if (oneRectCoord.get(3).get(1) >= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                exceptionTV_bad_LocationException_text_func();
+                                                                Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                pointFlag = false;
+                                                                break checkAll;
+                                                            } else if (oneRectCoord.get(3).get(1) <= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                if (oneRectCoord.get(3).get(1) > playerTwoRectCoord.get(numRect).get(1).get(1)) {
+                                                                    exceptionTV_bad_LocationException_text_func();
+                                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                    pointFlag = false;
+                                                                    break checkAll;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                } else if (oneRectCoord.get(0).get(1) >= playerTwoRectCoord.get(numRect).get(0).get(1)) {
+                                                    if (oneRectCoord.get(0).get(1) < playerTwoRectCoord.get(numRect).get(2).get(1)) {
+                                                        if (oneRectCoord.get(3).get(0) >= playerTwoRectCoord.get(numRect).get(3).get(0)) {
+                                                            if (oneRectCoord.get(3).get(1) >= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                exceptionTV_bad_LocationException_text_func();
+                                                                Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                pointFlag = false;
+                                                                break checkAll;
+                                                            } else if (oneRectCoord.get(3).get(1) <= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                if (oneRectCoord.get(3).get(1) > playerTwoRectCoord.get(numRect).get(1).get(1)) {
+                                                                    exceptionTV_bad_LocationException_text_func();
+                                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                    pointFlag = false;
+                                                                    break checkAll;
+                                                                }
+                                                            }
+                                                        } else if (oneRectCoord.get(3).get(0) <= playerTwoRectCoord.get(numRect).get(3).get(0)) {
+                                                            if (oneRectCoord.get(3).get(0) > playerTwoRectCoord.get(numRect).get(2).get(0)) {
+                                                                if (oneRectCoord.get(3).get(1) >= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                    exceptionTV_bad_LocationException_text_func();
+                                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                    pointFlag = false;
+                                                                    break checkAll;
+                                                                } else if (oneRectCoord.get(3).get(1) <= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                    if (oneRectCoord.get(3).get(1) > playerTwoRectCoord.get(numRect).get(1).get(1)) {
+                                                                        exceptionTV_bad_LocationException_text_func();
+                                                                        Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                        pointFlag = false;
+                                                                        break checkAll;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            } else if (oneRectCoord.get(0).get(0) >= playerTwoRectCoord.get(numRect).get(0).get(0)) {
+                                                if (oneRectCoord.get(0).get(0) < playerTwoRectCoord.get(numRect).get(1).get(0)) {
+                                                    if (oneRectCoord.get(0).get(1) <= playerTwoRectCoord.get(numRect).get(0).get(1)) {
+                                                        if (oneRectCoord.get(3).get(0) >= playerTwoRectCoord.get(numRect).get(3).get(0)) {
+                                                            if (oneRectCoord.get(3).get(1) >= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                exceptionTV_bad_LocationException_text_func();
+                                                                Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                pointFlag = false;
+                                                                break checkAll;
+                                                            } else if (oneRectCoord.get(3).get(1) <= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                if (oneRectCoord.get(3).get(1) > playerTwoRectCoord.get(numRect).get(1).get(1)) {
+                                                                    exceptionTV_bad_LocationException_text_func();
+                                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                    pointFlag = false;
+                                                                    break checkAll;
+                                                                }
+                                                            }
+                                                        } else if (oneRectCoord.get(3).get(0) <= playerTwoRectCoord.get(numRect).get(3).get(0)) {
+                                                            if (oneRectCoord.get(3).get(0) > playerTwoRectCoord.get(numRect).get(2).get(0)) {
+                                                                if (oneRectCoord.get(3).get(1) >= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                    exceptionTV_bad_LocationException_text_func();
+                                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                    pointFlag = false;
+                                                                    break checkAll;
+                                                                } else if (oneRectCoord.get(3).get(1) <= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                    if (oneRectCoord.get(3).get(1) > playerTwoRectCoord.get(numRect).get(1).get(1)) {
+                                                                        exceptionTV_bad_LocationException_text_func();
+                                                                        Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                        pointFlag = false;
+                                                                        break checkAll;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    } else if (oneRectCoord.get(0).get(1) >= playerTwoRectCoord.get(numRect).get(0).get(1)) {
+                                                        if (oneRectCoord.get(0).get(1) < playerTwoRectCoord.get(numRect).get(2).get(1)) {
+                                                            if (oneRectCoord.get(3).get(0) >= playerTwoRectCoord.get(numRect).get(3).get(0)) {
+                                                                if (oneRectCoord.get(3).get(1) >= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                    exceptionTV_bad_LocationException_text_func();
+                                                                    Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                    pointFlag = false;
+                                                                    break checkAll;
+                                                                } else if (oneRectCoord.get(3).get(1) <= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                    if (oneRectCoord.get(3).get(1) > playerTwoRectCoord.get(numRect).get(1).get(1)) {
+                                                                        exceptionTV_bad_LocationException_text_func();
+                                                                        Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                        pointFlag = false;
+                                                                        break checkAll;
+                                                                    }
+                                                                }
+                                                            } else if (oneRectCoord.get(3).get(0) <= playerTwoRectCoord.get(numRect).get(3).get(0)) {
+                                                                if (oneRectCoord.get(3).get(0) > playerTwoRectCoord.get(numRect).get(2).get(0)) {
+                                                                    if (oneRectCoord.get(3).get(1) >= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                        exceptionTV_bad_LocationException_text_func();
+                                                                        Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                        pointFlag = false;
+                                                                        break checkAll;
+                                                                    } else if (oneRectCoord.get(3).get(1) <= playerTwoRectCoord.get(numRect).get(3).get(1)) {
+                                                                        if (oneRectCoord.get(3).get(1) > playerTwoRectCoord.get(numRect).get(1).get(1)) {
+                                                                            exceptionTV_bad_LocationException_text_func();
+                                                                            Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
+                                                                            pointFlag = false;
+                                                                            break checkAll;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
                                         }
+                                    }
+                                }
+                                for (int numRect = 0; numRect < playerRectCoord.size(); numRect++) {
+                                    for (int numPointFirstRect = 0; numPointFirstRect < 4; numPointFirstRect++) {
+                                        for (int numPointSecondRect = 0; numPointSecondRect < 4; numPointSecondRect++) {
+                                            boolean good = false;
+                                            //Log.d("my", "old_X: " + playerRectCoord.get(numRect).get(numPointFirstRect).get(0));
+                                            //Log.d("my", "new_X: " + oneRectCoord.get(numPointSecondRect).get(0));
+                                            Log.d("my", "numRect: " + numRect);
 
-                                        if (((oneRectCoord.get(0).get(0) <= playerRectCoord.get(numRect).get(0).get(0) && oneRectCoord.get(0).get(1) <= playerRectCoord.get(numRect).get(0).get(1)) && (oneRectCoord.get(3).get(0) >= playerRectCoord.get(numRect).get(3).get(0) && oneRectCoord.get(3).get(1) >= playerRectCoord.get(numRect).get(3).get(1))) ||
-                                                ((oneRectCoord.get(0).get(0) >= playerRectCoord.get(numRect).get(0).get(0) && oneRectCoord.get(0).get(1) >= playerRectCoord.get(numRect).get(0).get(1)) && (oneRectCoord.get(3).get(0) <= playerRectCoord.get(numRect).get(3).get(0) && oneRectCoord.get(3).get(1) <= playerRectCoord.get(numRect).get(3).get(1))) ){
-                                            exceptionTV_bad_LocationException_text_func();
-                                            Log.d("my", "прямоугольники внутри друг друга. стоп, всё плохо");
-                                            pointFlag = false;
-                                            break checkAll;
-                                        }
-                                        if (playerRectCoord.get(numRect).get(numPointFirstRect).get(0).equals(oneRectCoord.get(numPointSecondRect).get(0))) {//одинаковые Х, проверяем по Y
-                                            Log.d("my", "одинаковые Х, проверяем по У");
-                                            if (numPointFirstRect > 1 || numPointSecondRect > 1) {
-                                                Log.d("my", "не допустимые точки");
-                                                //continue checkAll;
-                                            } else {
-                                                pointFlag = true;
-                                                 if (playerRectCoord.get(numRect).get(numPointFirstRect).get(1) <= oneRectCoord.get(numPointSecondRect).get(1) && playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) >= oneRectCoord.get(numPointSecondRect + 2).get(1)) {
-                                                    exceptionTV_good_text_func();
-                                                    draw = true;
-                                                    good = true;
-                                                    Log.d("my", "старый прямоугольник включает новый сбоку. стоп, всё хорошо");
-                                                    break checkAll;
-                                                } else if ((playerRectCoord.get(numRect).get(numPointFirstRect).get(1) >= oneRectCoord.get(numPointSecondRect).get(1) && playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) <= oneRectCoord.get(numPointSecondRect + 2).get(1))) {
-                                                    if (numRect == playerRectCoord.size() - 1) {
+                                            if (playerRectCoord.get(numRect).get(numPointFirstRect).get(0).equals(oneRectCoord.get(numPointSecondRect).get(0))) {//одинаковые Х, проверяем по Y
+                                                Log.d("my", "одинаковые Х, проверяем по У");
+                                                if (numPointFirstRect > 1 || numPointSecondRect > 1) {
+                                                    Log.d("my", "не допустимые точки");
+                                                    //continue checkAll;
+                                                } else {
+                                                    pointFlag = true;
+                                                    if (playerRectCoord.get(numRect).get(numPointFirstRect).get(1) <= oneRectCoord.get(numPointSecondRect).get(1) && playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) >= oneRectCoord.get(numPointSecondRect + 2).get(1)) {
                                                         exceptionTV_good_text_func();
                                                         draw = true;
                                                         good = true;
-                                                        Log.d("my", "новый прямоугольник включает старый сбоку, но больше прямоугольников нет. стоп, всё хорошо");
+                                                        Log.d("my", "старый прямоугольник включает новый сбоку. стоп, всё хорошо");
                                                         break checkAll;
+                                                    } else if ((playerRectCoord.get(numRect).get(numPointFirstRect).get(1) >= oneRectCoord.get(numPointSecondRect).get(1) && playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) <= oneRectCoord.get(numPointSecondRect + 2).get(1))) {
+                                                        if (numRect == playerRectCoord.size() - 1) {
+                                                            exceptionTV_good_text_func();
+                                                            draw = true;
+                                                            good = true;
+                                                            Log.d("my", "новый прямоугольник включает старый сбоку, это последний. стоп, всё хорошо");
+                                                            break checkAll;
+                                                        }
+                                                        Log.d("my", "rightLengthEmpty = " + rightLengthEmpty + " leftLengthEmpty = " + leftLengthEmpty);
+                                                        int lengthNow = playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) - playerRectCoord.get(numRect).get(numPointFirstRect).get(1);
+                                                        Log.d("my", "lengthNow = " + lengthNow);
+                                                        if (numPointFirstRect == 0 && numPointSecondRect == 1) {
+                                                            rightLengthEmpty = rightLengthEmpty - lengthNow;
+                                                            Log.d("my", "rightLengthEmpty = " + rightLengthEmpty);
+                                                        } else if (numPointFirstRect == 1 && numPointSecondRect == 0) {
+                                                            leftLengthEmpty = leftLengthEmpty - lengthNow;
+                                                            Log.d("my", "leftLengthEmpty = " + rightLengthEmpty);
+                                                        }
+                                                        Log.d("my", "новый прямоугольник включает старый сбоку. работаем дальше");
+                                                        //continue checkAll;
+                                                    } else if (playerRectCoord.get(numRect).get(numPointFirstRect).get(1) > oneRectCoord.get(numPointSecondRect).get(1) && playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) > oneRectCoord.get(numPointSecondRect + 2).get(1) && playerRectCoord.get(numRect).get(numPointFirstRect).get(1) <= oneRectCoord.get(numPointSecondRect + 2).get(1)) {
+                                                        Log.d("my", "rightLengthEmpty = " + rightLengthEmpty + " leftLengthEmpty = " + leftLengthEmpty);
+                                                        if (numPointFirstRect == 0 && numPointSecondRect == 1) {
+                                                            int rightLengthNow = oneRectCoord.get(numPointSecondRect + 2).get(1) - playerRectCoord.get(numRect).get(numPointFirstRect).get(1);
+                                                            Log.d("my", "rightLengthNow = " + rightLengthNow);
+                                                            rightLengthEmpty = rightLengthEmpty - rightLengthNow;
+                                                            Log.d("my", "rightLengthEmpty = " + rightLengthEmpty);
+                                                        } else if (numPointFirstRect == 1 && numPointSecondRect == 0) {
+                                                            int leftLengthNow = oneRectCoord.get(numPointSecondRect + 2).get(1) - playerRectCoord.get(numRect).get(numPointFirstRect).get(1);
+                                                            Log.d("my", "leftLengthNow = " + leftLengthNow);
+                                                            leftLengthEmpty = leftLengthEmpty - leftLengthNow;
+                                                            Log.d("my", "leftLengthEmpty = " + leftLengthEmpty);
+                                                        }
+                                                        Log.d("my", "новый торчит сверху");
+                                                        //continue checkAll;
+                                                    } else if (playerRectCoord.get(numRect).get(numPointFirstRect).get(1) < oneRectCoord.get(numPointSecondRect).get(1) && playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) < oneRectCoord.get(numPointSecondRect + 2).get(1) && playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) >= oneRectCoord.get(numPointSecondRect).get(1)) {
+                                                        if (numPointFirstRect == 0 && numPointSecondRect == 1) {
+                                                            int rightLengthNow = playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) - oneRectCoord.get(numPointSecondRect).get(1);
+                                                            Log.d("my", "rightLengthNow = " + rightLengthNow);
+                                                            rightLengthEmpty = rightLengthEmpty - rightLengthNow;
+                                                            Log.d("my", "rightLengthEmpty = " + rightLengthEmpty);
+                                                        } else if (numPointFirstRect == 1 && numPointSecondRect == 0) {
+                                                            int leftLengthNow = playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) - oneRectCoord.get(numPointSecondRect).get(1);
+                                                            Log.d("my", "leftLengthNow = " + leftLengthNow);
+                                                            leftLengthEmpty = leftLengthEmpty - leftLengthNow;
+                                                            Log.d("my", "leftLengthEmpty = " + leftLengthEmpty);
+                                                        }
+                                                        Log.d("my", "новый торчит снизу");
+                                                        //continue checkAll;
                                                     }
-                                                    Log.d("my", "rightLengthEmpty = " + rightLengthEmpty + " leftLengthEmpty = " + leftLengthEmpty);
-                                                    int lengthNow = playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) - playerRectCoord.get(numRect).get(numPointFirstRect).get(1);
-                                                    Log.d("my", "lengthNow = " + lengthNow);
-                                                    if (numPointFirstRect == 0 && numPointSecondRect == 1) {
-                                                        rightLengthEmpty = rightLengthEmpty - lengthNow;
-                                                        Log.d("my", "rightLengthEmpty = " + rightLengthEmpty);
-                                                    } else if (numPointFirstRect == 1 && numPointSecondRect == 0) {
-                                                        leftLengthEmpty = leftLengthEmpty - lengthNow;
-                                                        Log.d("my", "leftLengthEmpty = " + rightLengthEmpty);
+                                                    Log.d("my", "rightLengthEmpty: " + rightLengthEmpty + "; leftLengthEmpty: " + leftLengthEmpty);
+                                                    if (rightLengthEmpty <= 0 || leftLengthEmpty <= 0) {
+                                                        good = true;
+                                                        exceptionTV_good_text_func();
+                                                        draw = true;
+                                                        Log.d("my", "левые/правые отрицательные или = 0. стоп, всё хорошо");
+                                                        break checkAll;
+                                                    } else {
+                                                        good = false;
+                                                        exceptionTV_bad_LocationException_text_func();
+                                                        Log.d("my", "левые/правые не отрицательные. всё плохо");
+                                                        pointFlag = false;
+                                                        //continue checkAll;
                                                     }
-                                                    Log.d("my", "новый прямоугольник включает старый сбоку. работаем дальше");
-                                                    //continue checkAll;
-                                                } else if (playerRectCoord.get(numRect).get(numPointFirstRect).get(1) > oneRectCoord.get(numPointSecondRect).get(1) && playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) > oneRectCoord.get(numPointSecondRect + 2).get(1) && playerRectCoord.get(numRect).get(numPointFirstRect).get(1) <= oneRectCoord.get(numPointSecondRect + 2).get(1)) {
-                                                    Log.d("my", "rightLengthEmpty = " + rightLengthEmpty + " leftLengthEmpty = " + leftLengthEmpty);
-                                                    if (numPointFirstRect == 0 && numPointSecondRect == 1) {
-                                                        int rightLengthNow = oneRectCoord.get(numPointSecondRect + 2).get(1) - playerRectCoord.get(numRect).get(numPointFirstRect).get(1);
-                                                        Log.d("my", "rightLengthNow = " + rightLengthNow);
-                                                        rightLengthEmpty = rightLengthEmpty - rightLengthNow;
-                                                        Log.d("my", "rightLengthEmpty = " + rightLengthEmpty);
-                                                    } else if (numPointFirstRect == 1 && numPointSecondRect == 0) {
-                                                        int leftLengthNow = oneRectCoord.get(numPointSecondRect + 2).get(1) - playerRectCoord.get(numRect).get(numPointFirstRect).get(1);
-                                                        Log.d("my", "leftLengthNow = " + leftLengthNow);
-                                                        leftLengthEmpty = leftLengthEmpty - leftLengthNow;
-                                                        Log.d("my", "leftLengthEmpty = " + leftLengthEmpty);
-                                                    }
-                                                    Log.d("my", "новый торчит сверху");
-                                                    //continue checkAll;
-                                                } else if (playerRectCoord.get(numRect).get(numPointFirstRect).get(1) < oneRectCoord.get(numPointSecondRect).get(1) && playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) < oneRectCoord.get(numPointSecondRect + 2).get(1) && playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) >= oneRectCoord.get(numPointSecondRect).get(1)) {
-                                                    if (numPointFirstRect == 0 && numPointSecondRect == 1) {
-                                                        int rightLengthNow = playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) - oneRectCoord.get(numPointSecondRect).get(1);
-                                                        Log.d("my", "rightLengthNow = " + rightLengthNow);
-                                                        rightLengthEmpty = rightLengthEmpty - rightLengthNow;
-                                                        Log.d("my", "rightLengthEmpty = " + rightLengthEmpty);
-                                                    } else if (numPointFirstRect == 1 && numPointSecondRect == 0) {
-                                                        int leftLengthNow = playerRectCoord.get(numRect).get(numPointFirstRect + 2).get(1) - oneRectCoord.get(numPointSecondRect).get(1);
-                                                        Log.d("my", "leftLengthNow = " + leftLengthNow);
-                                                        leftLengthEmpty = leftLengthEmpty - leftLengthNow;
-                                                        Log.d("my", "leftLengthEmpty = " + leftLengthEmpty);
-                                                    }
-                                                    Log.d("my", "новый торчит снизу");
-                                                    //continue checkAll;
-                                                }
-                                                Log.d("my", "rightLengthEmpty: " + rightLengthEmpty + "; leftLengthEmpty: " + leftLengthEmpty);
-                                                if (rightLengthEmpty <= 0 || leftLengthEmpty <= 0) {
-                                                    good = true;
-                                                    exceptionTV_good_text_func();
-                                                    draw = true;
-                                                    Log.d("my", "левые/правые отрицательные или = 0. стоп, всё хорошо");
-                                                    break checkAll;
-                                                } else {
-                                                    good = false;
-                                                    exceptionTV_bad_LocationException_text_func();
-                                                    Log.d("my", "левые/правые не отрицательные. всё плохо");
-                                                    pointFlag = false;
-                                                    //continue checkAll;
                                                 }
                                             }
-                                        }
 
-                                        if (playerRectCoord.get(numRect).get(numPointFirstRect).get(1).equals(oneRectCoord.get(numPointSecondRect).get(1))) {// одинаковые У, проверяем по X
-                                            //Log.d("my", "numPointFirstRect = " + numPointFirstRect + "numPointSecondRect = " + numPointSecondRect);
-                                            Log.d("my", "одинаковые У, проверяем по Х");
-                                            if (numPointFirstRect % 2 != 0 || numPointSecondRect % 2 != 0) {
-                                                Log.d("my", "не допустимые точки");
-                                                //continue checkAll;
-                                            } else {
-                                                pointFlag = true;
-                                                if (playerRectCoord.get(numRect).get(numPointFirstRect).get(0) <= oneRectCoord.get(numPointSecondRect).get(0) && playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) >= oneRectCoord.get(numPointSecondRect + 1).get(0)) {
-                                                    exceptionTV_good_text_func();
-                                                    draw = true;
-                                                    good = true;
-                                                    Log.d("my", "старый прямоугольник включает новый сверху/снизу. стоп, всё хорошо");
-                                                    break checkAll;
-                                                } else if ((playerRectCoord.get(numRect).get(numPointFirstRect).get(0) >= oneRectCoord.get(numPointSecondRect).get(0) && playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) <= oneRectCoord.get(numPointSecondRect + 1).get(0))) {
-                                                    if (numRect == playerRectCoord.size() - 1) {
+                                            if (playerRectCoord.get(numRect).get(numPointFirstRect).get(1).equals(oneRectCoord.get(numPointSecondRect).get(1))) {// одинаковые У, проверяем по X
+                                                //Log.d("my", "numPointFirstRect = " + numPointFirstRect + "numPointSecondRect = " + numPointSecondRect);
+                                                Log.d("my", "одинаковые У, проверяем по Х");
+                                                if (numPointFirstRect % 2 != 0 || numPointSecondRect % 2 != 0) {
+                                                    Log.d("my", "не допустимые точки");
+                                                    //continue checkAll;
+                                                } else {
+                                                    pointFlag = true;
+                                                    if (playerRectCoord.get(numRect).get(numPointFirstRect).get(0) <= oneRectCoord.get(numPointSecondRect).get(0) && playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) >= oneRectCoord.get(numPointSecondRect + 1).get(0)) {
                                                         exceptionTV_good_text_func();
                                                         draw = true;
                                                         good = true;
-                                                        Log.d("my", "новый прямоугольник включает старый сверху/снизу, но больше прямоугольников нет, стоп, всё хорошо");
+                                                        Log.d("my", "старый прямоугольник включает новый сверху/снизу. стоп, всё хорошо");
                                                         break checkAll;
+                                                    } else if ((playerRectCoord.get(numRect).get(numPointFirstRect).get(0) >= oneRectCoord.get(numPointSecondRect).get(0) && playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) <= oneRectCoord.get(numPointSecondRect + 1).get(0))) {
+                                                        if (numRect == playerRectCoord.size() - 1) {
+                                                            exceptionTV_good_text_func();
+                                                            draw = true;
+                                                            good = true;
+                                                            Log.d("my", "новый прямоугольник включает старый сверху/снизу, это последний. стоп, всё хорошо");
+                                                            break checkAll;
+                                                        }
+                                                        Log.d("my", "upLengthEmpty = " + upLengthEmpty + " downLengthEmpty = " + downLengthEmpty);
+                                                        int upDownLengthNow = playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) - playerRectCoord.get(numRect).get(numPointFirstRect).get(0);
+                                                        Log.d("my", "upLengthNow = " + upDownLengthNow);
+                                                        if (numPointFirstRect == 2 && numPointSecondRect == 0) {
+                                                            upLengthEmpty = upLengthEmpty - upDownLengthNow;
+                                                            Log.d("my", "upLengthEmpty = " + upLengthEmpty);
+                                                        } else if (numPointFirstRect == 0 && numPointSecondRect == 2) {
+                                                            downLengthEmpty = downLengthEmpty - upDownLengthNow;
+                                                            Log.d("my", "downLengthEmpty = " + downLengthEmpty);
+                                                        }
+                                                        Log.d("my", "новый прямоугольник включает старый сверху/снизу. работаем дальше");
+                                                        //continue checkAll;
+                                                    } else if (playerRectCoord.get(numRect).get(numPointFirstRect).get(0) > oneRectCoord.get(numPointSecondRect).get(0) && playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) > oneRectCoord.get(numPointSecondRect + 1).get(0) && playerRectCoord.get(numRect).get(numPointFirstRect).get(0) <= oneRectCoord.get(numPointSecondRect + 1).get(0)) {
+                                                        Log.d("my", "upLengthEmpty = " + upLengthEmpty + " downLengthEmpty = " + downLengthEmpty);
+                                                        if (numPointFirstRect == 2 && numPointSecondRect == 0) {
+                                                            int upLengthNow = oneRectCoord.get(numPointSecondRect + 1).get(0) - playerRectCoord.get(numRect).get(numPointFirstRect).get(0);
+                                                            Log.d("my", "upLengthNow = " + upLengthNow);
+                                                            upLengthEmpty = upLengthEmpty - upLengthNow;
+                                                            Log.d("my", "upLengthEmpty = " + upLengthEmpty);
+                                                        } else if (numPointFirstRect == 0 && numPointSecondRect == 2) {
+                                                            int downLengthNow = oneRectCoord.get(numPointSecondRect + 1).get(0) - playerRectCoord.get(numRect).get(numPointFirstRect).get(0);
+                                                            Log.d("my", "downLengthNow = " + downLengthNow);
+                                                            downLengthEmpty = downLengthEmpty - downLengthNow;
+                                                            Log.d("my", "downLengthEmpty = " + downLengthEmpty);
+                                                        }
+                                                        Log.d("my", "торчит слева");
+                                                        //continue checkAll;
+                                                    } else if (playerRectCoord.get(numRect).get(numPointFirstRect).get(0) < oneRectCoord.get(numPointSecondRect).get(0) && playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) < oneRectCoord.get(numPointSecondRect + 1).get(0) && playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) >= oneRectCoord.get(numPointSecondRect).get(0)) {
+                                                        Log.d("my", "upLengthEmpty = " + upLengthEmpty + " downLengthEmpty = " + downLengthEmpty);
+                                                        if (numPointFirstRect == 2 && numPointSecondRect == 0) {
+                                                            int upLengthNow = playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) - oneRectCoord.get(numPointSecondRect).get(0);
+                                                            Log.d("my", "upLengthNow = " + upLengthNow);
+                                                            upLengthEmpty = upLengthEmpty - upLengthNow;
+                                                            Log.d("my", "upLengthEmpty = " + upLengthEmpty);
+                                                        } else if (numPointFirstRect == 0 && numPointSecondRect == 2) {
+                                                            int downLengthNow = playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) - oneRectCoord.get(numPointSecondRect).get(0);
+                                                            Log.d("my", "downLengthNow = " + downLengthNow);
+                                                            downLengthEmpty = downLengthEmpty - downLengthNow;
+                                                            Log.d("my", "downLengthEmpty = " + downLengthEmpty);
+                                                        }
+                                                        Log.d("my", "торчит справа");
+                                                        //continue checkAll;
                                                     }
-                                                    Log.d("my", "upLengthEmpty = " + upLengthEmpty + " downLengthEmpty = " + downLengthEmpty);
-                                                    int upDownLengthNow = playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) - playerRectCoord.get(numRect).get(numPointFirstRect).get(0);
-                                                    Log.d("my", "upLengthNow = " + upDownLengthNow);
-                                                    if (numPointFirstRect == 2 && numPointSecondRect == 0) {
-                                                        upLengthEmpty = upLengthEmpty - upDownLengthNow;
-                                                        Log.d("my", "upLengthEmpty = " + upLengthEmpty);
-                                                    } else if (numPointFirstRect == 0 && numPointSecondRect == 2) {
-                                                        downLengthEmpty = downLengthEmpty - upDownLengthNow;
-                                                        Log.d("my", "downLengthEmpty = " + downLengthEmpty);
+                                                    Log.d("my", "upLengthEmpty: " + upLengthEmpty + "; downLengthEmpty: " + downLengthEmpty);
+                                                    if (upLengthEmpty <= 0 || downLengthEmpty <= 0) {
+                                                        exceptionTV_good_text_func();
+                                                        draw = true;
+                                                        Log.d("my", "верхние/нижние отрицательны или = 0. стоп, всё хорошо");
+                                                        break checkAll;
+                                                    } else {
+                                                        if (!good) {
+                                                            exceptionTV_bad_LocationException_text_func();
+                                                            Log.d("my", "верхние/нижние неотрицательны. стоп, всё плохо");
+                                                            pointFlag = false;
+                                                        }
+                                                        //continue checkAll;
                                                     }
-                                                    Log.d("my", "новый прямоугольник включает старый сверху/снизу. работаем дальше");
-                                                    //continue checkAll;
-                                                } else if (playerRectCoord.get(numRect).get(numPointFirstRect).get(0) > oneRectCoord.get(numPointSecondRect).get(0) && playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) > oneRectCoord.get(numPointSecondRect + 1).get(0) && playerRectCoord.get(numRect).get(numPointFirstRect).get(0) <= oneRectCoord.get(numPointSecondRect + 1).get(0)) {
-                                                    Log.d("my", "upLengthEmpty = " + upLengthEmpty + " downLengthEmpty = " + downLengthEmpty);
-                                                    if (numPointFirstRect == 2 && numPointSecondRect == 0) {
-                                                        int upLengthNow = oneRectCoord.get(numPointSecondRect + 1).get(0) - playerRectCoord.get(numRect).get(numPointFirstRect).get(0);
-                                                        Log.d("my", "upLengthNow = " + upLengthNow);
-                                                        upLengthEmpty = upLengthEmpty - upLengthNow;
-                                                        Log.d("my", "upLengthEmpty = " + upLengthEmpty);
-                                                    } else if (numPointFirstRect == 0 && numPointSecondRect == 2) {
-                                                        int downLengthNow = oneRectCoord.get(numPointSecondRect + 1).get(0) - playerRectCoord.get(numRect).get(numPointFirstRect).get(0);
-                                                        Log.d("my", "downLengthNow = " + downLengthNow);
-                                                        downLengthEmpty = downLengthEmpty - downLengthNow;
-                                                        Log.d("my", "downLengthEmpty = " + downLengthEmpty);
-                                                    }
-                                                    Log.d("my", "торчит слева");
-                                                    //continue checkAll;
-                                                } else if (playerRectCoord.get(numRect).get(numPointFirstRect).get(0) < oneRectCoord.get(numPointSecondRect).get(0) && playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) < oneRectCoord.get(numPointSecondRect + 1).get(0) && playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) >= oneRectCoord.get(numPointSecondRect).get(0)) {
-                                                    Log.d("my", "upLengthEmpty = " + upLengthEmpty + " downLengthEmpty = " + downLengthEmpty);
-                                                    if (numPointFirstRect == 2 && numPointSecondRect == 0) {
-                                                        int upLengthNow = playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) - oneRectCoord.get(numPointSecondRect).get(0);
-                                                        Log.d("my", "upLengthNow = " + upLengthNow);
-                                                        upLengthEmpty = upLengthEmpty - upLengthNow;
-                                                        Log.d("my", "upLengthEmpty = " + upLengthEmpty);
-                                                    } else if (numPointFirstRect == 0 && numPointSecondRect == 2) {
-                                                        int downLengthNow = playerRectCoord.get(numRect).get(numPointFirstRect + 1).get(0) - oneRectCoord.get(numPointSecondRect).get(0);
-                                                        Log.d("my", "downLengthNow = " + downLengthNow);
-                                                        downLengthEmpty = downLengthEmpty - downLengthNow;
-                                                        Log.d("my", "downLengthEmpty = " + downLengthEmpty);
-                                                    }
-                                                    Log.d("my", "торчит справа");
-                                                    //continue checkAll;
-                                                }
-                                                Log.d("my", "upLengthEmpty: " + upLengthEmpty + "; downLengthEmpty: " + downLengthEmpty);
-                                                if (upLengthEmpty <= 0 || downLengthEmpty <= 0) {
-                                                    exceptionTV_good_text_func();
-                                                    draw = true;
-                                                    Log.d("my", "верхние/нижние отрицательны или = 0. стоп, всё хорошо");
-                                                    break checkAll;
-                                                } else {
-                                                    if (!good) {
-                                                        exceptionTV_bad_LocationException_text_func();
-                                                        Log.d("my", "верхние/нижние неотрицательны. стоп, всё плохо");
-                                                        pointFlag = false;
-                                                    }
-                                                    //continue checkAll;
                                                 }
                                             }
                                         }
