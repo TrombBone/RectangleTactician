@@ -12,20 +12,20 @@
         android:id="@+id/testSurfaceView_ClassElement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="80"/>
+        android:layout_weight="98"/>
 
     <TextView
         android:id="@+id/exceptionTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="10"
+        android:layout_weight="1"
 
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="10"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="100">
 

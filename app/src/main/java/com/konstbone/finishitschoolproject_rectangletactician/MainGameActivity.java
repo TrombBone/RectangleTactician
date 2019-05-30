@@ -14,7 +14,6 @@ import java.util.Objects;
 import static com.konstbone.finishitschoolproject_rectangletactician.TestSurfaceView.draw;
 import static com.konstbone.finishitschoolproject_rectangletactician.TestSurfaceView.oneRectCoord;
 import static com.konstbone.finishitschoolproject_rectangletactician.TestSurfaceView.playerOneChecker;
-import static com.konstbone.finishitschoolproject_rectangletactician.TestSurfaceView.playerTwoChecker;
 
 public class MainGameActivity extends AppCompatActivity {
 
@@ -89,9 +88,10 @@ public class MainGameActivity extends AppCompatActivity {
                 rectSide1 = rectSide2;
                 rectSide2 = help;
                 if (playerFlag.equals("Player_1")) {
-                    playerOneChecker();
+                    playerOneChecker(playerOneRectCoord);
                 } else if (playerFlag.equals("Player_2")){
-                    playerTwoChecker();
+                    playerOneChecker(playerTwoRectCoord);
+                    //playerTwoChecker();
                 }
                 break;
             case R.id.endPlayerProgressButton:
