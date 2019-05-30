@@ -22,7 +22,6 @@ public class GreetingActivity extends AppCompatActivity {
             case R.id.regulationsButton:
                 Intent FromGreetingToRegulationsIntent = new Intent(GreetingActivity.this, RegulationsActivity.class);
                 startActivity(FromGreetingToRegulationsIntent);
-                finish();
                 break;
             case R.id.settingsButton:
                 //Intent FromGreetingToSettingsIntent = new Intent(GreetingActivity.this, SettingsActivity.class);
