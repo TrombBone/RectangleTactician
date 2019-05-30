@@ -811,8 +811,8 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                 }
             }
         }
-
     }
+
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         dt = new DrawThread(surfaceHolder);
@@ -823,41 +823,4 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) { }
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) { }
-
-    /*
-    public class ExceptionRectangle extends Thread {
-        int partCanvasWidth;
-        MainGameActivity mainGameActivity;
-        public ExceptionRectangle(MainGameActivity mainGameActivity, int partCanvasWidth) {
-            super();
-            this.mainGameActivity = mainGameActivity;
-            this.partCanvasWidth = partCanvasWidth;
-        }
-
-        Runnable exceptionTV_good_text_func = new Runnable() {
-            @Override
-            public void run() {
-                exceptionFlag = true;
-                mainGameActivity.exceptionTV_good_text_func();
-            }
-        };
-
-        Runnable exceptionTV_bad_OutOfBoundsException_text_func = new Runnable() {
-            @Override
-            public void run() {
-                exceptionFlag = false;
-                mainGameActivity.exceptionTV_bad_OutOfBoundsException_text_func();
-            }
-        };
-
-        @Override
-        public void run() {
-            if (exceptionFlag) {
-                mainGameActivity.runOnUiThread(exceptionTV_good_text_func);
-            } else { // else if (выход за границы)
-                mainGameActivity.runOnUiThread(exceptionTV_bad_OutOfBoundsException_text_func);
-            }
-        }
-    }
-    */
 }
